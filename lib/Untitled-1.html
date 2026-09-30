@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jungle Jive Cattery - Pusat Adopsi Kucing Bengal Eksotis</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Font Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        cattery: {
+                            DEFAULT: '#c85e00',
+                            dark: '#8c3d00',
+                            light: '#e87308',
+                            bg: '#fcf8f5',
+                            accent: '#1e293b'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f8f6f3;
+            scroll-behavior: smooth;
+        }
+        .filter-btn.active {
+            background-color: #c85e00;
+            color: #ffffff;
+            border-color: #c85e00;
+            box-shadow: 0 4px 12px rgba(200, 94, 0, 0.25);
+        }
+        .cat-card {
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        .cat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px -8px rgba(0, 0, 0, 0.12);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c85e00;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body class="min-h-screen text-gray-800 flex flex-col justify-between">
+
+    <div>
+        <!-- Sticky Navigation -->
+        <nav class="bg-amber-950 text-amber-100 py-3 px-4 sticky top-0 z-40 shadow-md border-b border-amber-800/50">
+            <div class="max-w-6xl mx-auto flex justify-between items-center text-xs sm:text-sm">
+                <a href="#" class="font-bold text-amber-400 text-base flex items-center gap-2">
+                    <i class="fa-solid fa-paw"></i> Jungle Jive Cattery
+                </a>
+                <div class="hidden md:flex items-center gap-6 font-medium">
+                    <a href="#katalog" class="hover:text-amber-400 transition">Katalog Kucing</a>
+                    <a href="#tentang-bengal" class="hover:text-amber-400 transition">Tentang Bengal</a>
+                    <a href="#keunggulan" class="hover:text-amber-400 transition">Keunggulan</a>
+                    <a href="#faq" class="hover:text-amber-400 transition">FAQ</a>
+                </div>
+                <!-- WhatsApp diganti menjadi Tombol Login -->
+                <button onclick="openLoginModal()" class="bg-cattery hover:bg-cattery-light text-white px-4 py-1.5 rounded-full font-medium transition text-xs flex items-center gap-1.5 shadow-sm">
+                    <i class="fa-solid fa-right-to-bracket text-sm"></i> Login
+                </button>
+            </div>
+        </nav>
+
+        <!-- Header Hero Banner -->
+        <header class="max-w-6xl mx-auto px-4 pt-6">
+            <div class="bg-gradient-to-r from-[#8c3d00] via-[#c85e00] to-[#2a1b12] text-white rounded-3xl p-8 sm:p-12 text-center shadow-xl relative overflow-hidden">
+                <!-- Background decorative elements -->
+                <div class="absolute -right-10 -bottom-10 opacity-10 pointer-events-none">
+                    <i class="fa-solid font-black fa-cat text-[220px]"></i>
+                </div>
+                <div class="absolute -left-10 -top-10 opacity-10 pointer-events-none">
+                    <i class="fa-solid fa-paw text-[180px]"></i>
+                </div>
+
+                <div class="relative z-10 flex flex-col items-center">
+                    <!-- Brand Badge -->
+                    <div class="inline-flex items-center justify-center p-2 bg-white/10 backdrop-blur-md rounded-full mb-3 px-4 text-xs sm:text-sm font-medium tracking-wide border border-white/20">
+                        <i class="fa-solid fa-circle-check text-emerald-400 mr-2"></i> CFA Cattery Registered & Breeder
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl font-extrabold tracking-tight mb-2">
+                        Jungle Jive Cattery
+                    </h1>
+                    
+                    <p class="text-amber-100 text-sm sm:text-base md:text-lg max-w-2xl mx-auto font-light">
+                        Pusat Adopsi Kucing Ras Bengal Eksotis Berkualitas - Sedan, Rembang, Jawa Tengah
+                    </p>
+
+                    <div class="mt-6 flex flex-wrap items-center justify-center gap-3 text-xs sm:text-sm text-amber-100">
+                        <span class="flex items-center gap-1.5 bg-black/30 backdrop-blur-sm px-3.5 py-1.5 rounded-full border border-white/10">
+                            <i class="fa-solid fa-location-dot text-amber-300"></i> Sedan, Rembang, Jawa Tengah
+                        </span>
+                        <span class="flex items-center gap-1.5 bg-black/30 backdrop-blur-sm px-3.5 py-1.5 rounded-full border border-white/10">
+                            <i class="fa-solid fa-certificate text-amber-300"></i> CFA Pedigree Ready
+                        </span>
+                        <a href="https://wa.me/6283879571686" target="_blank" class="flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white font-medium px-3.5 py-1.5 rounded-full transition-colors shadow-sm">
+                            <i class="fa-brands fa-whatsapp text-white text-base"></i> Hubungi WA
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="max-w-6xl mx-auto px-4 mt-12 space-y-16">
+            
+            <!-- SECTION 1: KATALOG KUCING -->
+            <section id="katalog" class="scroll-mt-20">
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900">Koleksi Adopsi Kucing Bengal</h2>
+                    <p class="text-gray-500 text-xs sm:text-sm mt-1">Pilih kucing kesayanganmu dari breeder resmi bersertifikat</p>
+                </div>
+
+                <!-- Filter Category Buttons -->
+                <div class="flex justify-center items-center gap-3 mb-8 flex-wrap">
+                    <button onclick="filterCats('all')" id="btn-all" class="filter-btn active border-2 border-cattery text-cattery px-7 py-2.5 rounded-full font-semibold text-sm sm:text-base transition-all duration-200 hover:bg-cattery hover:text-white">
+                        Semua
+                    </button>
+                    <button onclick="filterCats('tersedia')" id="btn-tersedia" class="filter-btn border-2 border-cattery text-cattery px-7 py-2.5 rounded-full font-semibold text-sm sm:text-base transition-all duration-200 hover:bg-cattery hover:text-white">
+                        Tersedia
+                    </button>
+                    <button onclick="filterCats('teradopsi')" id="btn-teradopsi" class="filter-btn border-2 border-cattery text-cattery px-7 py-2.5 rounded-full font-semibold text-sm sm:text-base transition-all duration-200 hover:bg-cattery hover:text-white">
+                        Teradopsi
+                    </button>
+                </div>
+
+                <!-- Cat Grid Container -->
+                <div id="cat-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                    <!-- Cards injected dynamically -->
+                </div>
+
+                <!-- Empty State -->
+                <div id="empty-state" class="hidden text-center py-16">
+                    <i class="fa-solid fa-cat text-5xl text-gray-300 mb-3"></i>
+                    <h3 class="text-lg font-semibold text-gray-600">Tidak ada kucing dengan kategori ini</h3>
+                    <p class="text-gray-400 text-sm">Silakan pilih filter lain untuk melihat koleksi Jungle Jive Cattery.</p>
+                </div>
+            </section>
+
+            <!-- SECTION 2: TENTANG KUCING BENGAL -->
+            <section id="tentang-bengal" class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-amber-100 scroll-mt-20">
+                <div class="max-w-4xl mx-auto">
+                    <div class="text-center mb-8">
+                        <span class="text-cattery font-semibold text-xs uppercase tracking-wider">Edukasi & Informasi</span>
+                        <h2 class="text-2xl sm:text-3xl font-bold text-gray-900 mt-1">Apa Itu Kucing Bengal?</h2>
+                        <div class="w-16 h-1 bg-cattery mx-auto mt-3 rounded-full"></div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                        <div class="space-y-4 text-gray-600 text-sm leading-relaxed">
+                            <p>
+                                <strong class="text-gray-800">Kucing Bengal</strong> adalah ras hasil persilangan antara kucing domestik dengan kucing hutan Asia (Asian Leopard Cat / <em>Prionailurus bengalensis</em>). Kombinasi ini menghasilkan kucing berpola eksotis menyerupai macan tutul mini, namun memiliki karakter jinak dan penuh kasih sayang.
+                            </p>
+                            <p>
+                                Berbeda dari ras kucing lainnya, Bengal memiliki bulu bertekstur halus seperti sutra yang sering kali memiliki efek kilau emas (*glitter effect*) di bawah sinar matahari.
+                            </p>
+                            <div class="bg-amber-50 p-4 rounded-2xl border border-amber-200 text-xs text-amber-900 space-y-1">
+                                <p class="font-bold flex items-center gap-1.5"><i class="fa-solid fa-star text-amber-600"></i> Karakter Utama Kucing Bengal:</p>
+                                <ul class="list-disc list-inside space-y-0.5 text-gray-700">
+                                    <li><strong>Sangat Cerdas:</strong> Mudah dilatih trik & berjalan dengan tali harness.</li>
+                                    <li><strong>Aktif & Energik:</strong> Suka melompat tinggi dan bermain interaktif.</li>
+                                    <li><strong>Suka Air:</strong> Unik dibanding kucing lain, Bengal gemar bermain air.</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Pattern Showcase Cards -->
+                        <div class="bg-amber-50/50 p-6 rounded-2xl border border-amber-100">
+                            <h3 class="font-bold text-gray-800 mb-4 text-base border-b border-amber-200 pb-2">Varian Pattern/Motif Populer:</h3>
+                            <div class="space-y-3 text-xs">
+                                <div class="bg-white p-3 rounded-xl shadow-sm border border-gray-100">
+                                    <span class="font-bold text-cattery">1. Rosette (Brown/Spotted)</span>
+                                    <p class="text-gray-500 mt-0.5">Motif lingkaran dengan pusat warna lebih terang mirip macan tutul jawa.</p>
+                                </div>
+                                <div class="bg-white p-3 rounded-xl shadow-sm border border-gray-100">
+                                    <span class="font-bold text-cattery">2. Marble</span>
+                                    <p class="text-gray-500 mt-0.5">Pola melingkar bercorak seperti marbel/awan yang mengalir anggun.</p>
+                                </div>
+                                <div class="bg-white p-3 rounded-xl shadow-sm border border-gray-100">
+                                    <span class="font-bold text-cattery">3. Snow & Silver Bengal</span>
+                                    <p class="text-gray-500 mt-0.5">Varian eksotis berdasar warna putih/perak bermata biru atau hijau kristal.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 3: KEUNGGULAN JUNGLE JIVE CATTERY -->
+            <section id="keunggulan" class="scroll-mt-20">
+                <div class="text-center mb-10">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900">Mengapa Mengadopsi dari Kami?</h2>
+                    <p class="text-gray-500 text-xs sm:text-sm mt-1">Komitmen Jungle Jive Cattery terhadap kualitas & kesehatan kucing</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm text-center">
+                        <div class="w-12 h-12 bg-amber-100 text-cattery rounded-2xl flex items-center justify-center mx-auto mb-4 text-xl">
+                            <i class="fa-solid fa-certificate"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-800 mb-2">Terdaftar CFA</h3>
+                        <p class="text-gray-500 text-xs leading-relaxed">Merupakan breeder terdaftar di Cat Fanciers' Association (CFA) resmi dengan silsilah terjamin.</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm text-center">
+                        <div class="w-12 h-12 bg-emerald-100 text-emerald-700 rounded-2xl flex items-center justify-center mx-auto mb-4 text-xl">
+                            <i class="fa-solid fa-heart-pulse"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-800 mb-2">Jaminan Kesehatan</h3>
+                        <p class="text-gray-500 text-xs leading-relaxed">Semua kitten dibesarkan dengan gizi optimal, bebas kutu, bebas jamur, dan aktif berkepribadian manis.</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm text-center">
+                        <div class="w-12 h-12 bg-blue-100 text-blue-700 rounded-2xl flex items-center justify-center mx-auto mb-4 text-xl">
+                            <i class="fa-solid fa-syringe"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-800 mb-2">Vaksin & De-Wormed</h3>
+                        <p class="text-gray-500 text-xs leading-relaxed">Sudah mendapatkan vaksinasi dasar dan rutin obat cacing lengkap sebelum siap dilepas adopsi.</p>
+                    </div>
+
+                    <div class="bg-white p-6 rounded-2xl border border-gray-100 shadow-sm text-center">
+                        <div class="w-12 h-12 bg-purple-100 text-purple-700 rounded-2xl flex items-center justify-center mx-auto mb-4 text-xl">
+                            <i class="fa-solid fa-truck-fast"></i>
+                        </div>
+                        <h3 class="font-bold text-gray-800 mb-2">Pengiriman Aman</h3>
+                        <p class="text-gray-500 text-xs leading-relaxed">Melayani pengiriman aman ke seluruh Indonesia dengan pet travel tepercaya & bergaransi selamat.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION 4: FAQ -->
+            <section id="faq" class="bg-white rounded-3xl p-6 sm:p-10 shadow-sm border border-amber-100 scroll-mt-20">
+                <div class="text-center mb-8">
+                    <h2 class="text-2xl sm:text-3xl font-bold text-gray-900">Pertanyaan Sering Diajukan (FAQ)</h2>
+                    <p class="text-gray-500 text-xs sm:text-sm mt-1">Segala hal yang perlu kamu ketahui sebelum mengadopsi</p>
+                </div>
+
+                <div class="max-w-3xl mx-auto space-y-4 text-sm">
+                    <div class="border border-gray-200 rounded-2xl p-4">
+                        <h3 class="font-bold text-gray-800 flex items-center gap-2">
+                            <i class="fa-solid fa-circle-question text-cattery"></i> Bagaimana cara booking kitten di Jungle Jive Cattery?
+                        </h3>
+                        <p class="text-gray-600 mt-2 text-xs leading-relaxed pl-6">
+                            Kamu dapat memilih kitten yang berstatus "Tersedia", lalu klik tombol **Booking**. Kamu akan terhubung langsung ke WhatsApp resmi kami untuk konfirmasi down payment (DP) dan jadwal adopsi.
+                        </p>
+                    </div>
+
+                    <div class="border border-gray-200 rounded-2xl p-4">
+                        <h3 class="font-bold text-gray-800 flex items-center gap-2">
+                            <i class="fa-solid fa-circle-question text-cattery"></i> Apakah bisa datang berkunjung langsung?
+                        </h3>
+                        <p class="text-gray-600 mt-2 text-xs leading-relaxed pl-6">
+                            Tentu! Cattery kami berlokasi di **Sedan, Rembang, Jawa Tengah**. Kunjungan langsung dapat dijadwalkan terlebih dahulu melalui janji temu via WhatsApp.
+                        </p>
+                    </div>
+
+                    <div class="border border-gray-200 rounded-2xl p-4">
+                        <h3 class="font-bold text-gray-800 flex items-center gap-2">
+                            <i class="fa-solid fa-circle-question text-cattery"></i> Apakah kucing Bengal cocok untuk pemula?
+                        </h3>
+                        <p class="text-gray-600 mt-2 text-xs leading-relaxed pl-6">
+                            Sangat cocok! Walaupun tampilannya liar seperti macan, Bengal sangat manja dan suka berinteraksi dengan manusia. Kami juga memberikan panduan perawatan bagi adopter pemula.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Modal Detail Kucing -->
+    <div id="detail-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 transition-opacity duration-300">
+        <div class="bg-white rounded-3xl max-w-lg w-full overflow-hidden shadow-2xl transform transition-all scale-95 opacity-0 max-h-[90vh] overflow-y-auto" id="modal-box">
+            <!-- Modal Header / Image -->
+            <div class="relative h-64 sm:h-72">
+                <img id="modal-img" src="" alt="Cat Image" class="w-full h-full object-cover">
+                <button onclick="closeModal()" class="absolute top-4 right-4 bg-black/50 text-white hover:bg-black/80 w-9 h-9 rounded-full flex items-center justify-center transition-colors">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+                <div id="modal-badge" class="absolute top-4 left-4 px-3.5 py-1 rounded-full text-xs font-semibold text-white shadow-md">
+                    Status
+                </div>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="p-6">
+                <div class="flex justify-between items-start mb-2">
+                    <div>
+                        <h3 id="modal-name" class="text-2xl font-bold text-gray-900">Nama Kucing</h3>
+                        <p id="modal-pattern" class="text-cattery font-medium text-sm">Pattern Variant</p>
+                    </div>
+                    <span id="modal-price" class="text-xl font-bold text-cattery">Rp 0</span>
+                </div>
+
+                <p id="modal-desc" class="text-gray-600 text-sm my-4 leading-relaxed">
+                    Deskripsi detail mengenai karakteristik, sifat, dan silsilah kucing akan ditampilkan di sini.
+                </p>
+
+                <!-- Stats Grid -->
+                <div class="grid grid-cols-2 gap-3 bg-amber-50/70 p-4 rounded-2xl mb-6 border border-amber-100 text-xs sm:text-sm">
+                    <div class="flex items-center gap-2.5">
+                        <i class="fa-solid fa-cake-candles text-cattery text-base"></i>
+                        <div>
+                            <p class="text-gray-400 text-[11px] uppercase tracking-wide">Usia</p>
+                            <p id="modal-age" class="font-semibold text-gray-800">3 Bulan</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2.5">
+                        <i class="fa-solid fa-venus-mars text-cattery text-base"></i>
+                        <div>
+                            <p class="text-gray-400 text-[11px] uppercase tracking-wide">Jenis Kelamin</p>
+                            <p id="modal-gender" class="font-semibold text-gray-800">Jantan</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2.5">
+                        <i class="fa-solid fa-syringe text-cattery text-base"></i>
+                        <div>
+                            <p class="text-gray-400 text-[11px] uppercase tracking-wide">Vaksinasi</p>
+                            <p id="modal-vaccine" class="font-semibold text-gray-800">Lengkap</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-2.5">
+                        <i class="fa-solid fa-certificate text-cattery text-base"></i>
+                        <div>
+                            <p class="text-gray-400 text-[11px] uppercase tracking-wide">Sertifikat CFA</p>
+                            <p id="modal-pedigree" class="font-semibold text-gray-800">Pedigree Ready</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Button in Modal -->
+                <div class="flex gap-3">
+                    <button onclick="closeModal()" class="w-1/3 bg-gray-100 hover:bg-gray-200 text-gray-700 font-semibold py-3 rounded-xl transition">
+                        Tutup
+                    </button>
+                    <button id="modal-action-btn" class="w-2/3 bg-cattery hover:bg-cattery-dark text-white font-semibold py-3 rounded-xl shadow-md transition flex items-center justify-center gap-2">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span>Booking via WA</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Login Baru -->
+    <div id="login-modal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4 transition-opacity duration-300">
+        <div class="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 shadow-2xl relative transform transition-all scale-95 opacity-0" id="login-box">
+            <button onclick="closeLoginModal()" class="absolute top-4 right-4 bg-gray-100 text-gray-500 hover:bg-gray-200 w-8 h-8 rounded-full flex items-center justify-center transition">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 bg-amber-100 text-cattery rounded-full flex items-center justify-center mx-auto mb-3 text-xl">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900">Masuk Akun</h3>
+                <p class="text-xs text-gray-500 mt-1">Masuk untuk mengelola adopsi dan pesanan kamu</p>
+            </div>
+
+            <form onsubmit="handleLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">Email / Username</label>
+                    <input type="text" required placeholder="Masukkan email atau username" class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-cattery">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">Kata Sandi</label>
+                    <input type="password" required placeholder="••••••••" class="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:outline-none focus:border-cattery">
+                </div>
+                <button type="submit" class="w-full bg-cattery hover:bg-cattery-dark text-white font-semibold py-3 rounded-xl shadow-md transition">
+                    Masuk Sekarang
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Toast Notification Container -->
+    <div id="toast" class="fixed bottom-5 right-5 bg-gray-900 text-white px-5 py-3.5 rounded-2xl shadow-xl flex items-center gap-3 transform translate-y-20 opacity-0 transition-all duration-300 z-50">
+        <i id="toast-icon" class="fa-solid fa-circle-check text-emerald-400 text-xl"></i>
+        <span id="toast-message" class="text-sm font-medium">Memproses permintaan...</span>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-amber-950 text-amber-200 mt-20 pt-12 pb-8 border-t border-amber-900 text-sm">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-center md:text-left">
+                <p class="font-bold text-amber-100 text-lg">Jungle Jive Cattery</p>
+                <p class="text-amber-300/80 text-xs mt-1">Bengal Breeder & Pusat Adopsi Kucing Bengal Eksotis • Sedan, Rembang, Jawa Tengah</p>
+                <p class="text-xs text-amber-400/60 mt-3">© 2026 Jungle Jive Cattery. All Rights Reserved.</p>
+            </div>
+
+            <!-- Social Media & Contact Links -->
+            <div class="flex flex-wrap items-center justify-center gap-3 text-xs sm:text-sm">
+                <a href="https://wa.me/6283879571686" target="_blank" class="flex items-center gap-2 px-4 py-2 bg-emerald-900/60 hover:bg-emerald-800 text-emerald-200 font-medium rounded-xl border border-emerald-700/50 transition">
+                    <i class="fa-brands fa-whatsapp text-emerald-400 text-base"></i> WhatsApp
+                </a>
+                <a href="https://instagram.com/jungle_jive_cattery" target="_blank" class="flex items-center gap-2 px-4 py-2 bg-pink-950/60 hover:bg-pink-900 text-pink-200 font-medium rounded-xl border border-pink-800/50 transition">
+                    <i class="fa-brands fa-instagram text-pink-400 text-base"></i> Instagram
+                </a>
+                <a href="https://facebook.com/JungleJiveCattery" target="_blank" class="flex items-center gap-2 px-4 py-2 bg-blue-950/60 hover:bg-blue-900 text-blue-200 font-medium rounded-xl border border-blue-800/50 transition">
+                    <i class="fa-brands fa-facebook text-blue-400 text-base"></i> Facebook
+                </a>
+                <a href="https://linktr.ee/Junglejive" target="_blank" class="flex items-center gap-2 px-4 py-2 bg-amber-900/60 hover:bg-amber-800 text-amber-200 font-medium rounded-xl border border-amber-700/50 transition">
+                    <i class="fa-solid fa-link text-amber-400 text-base"></i> Linktree
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Cat Catalog Data for Jungle Jive Cattery
+        const catData = [
+            {
+                id: 1,
+                name: "Leo",
+                pattern: "Bengal Rosette",
+                price: "Rp 6.500.000",
+                status: "tersedia",
+                image: "https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?auto=format&fit=crop&w=800&q=80",
+                age: "3,5 Bulan",
+                gender: "Jantan (Male)",
+                vaccine: "Vaksin Tricat + Worm",
+                pedigree: "CFA Registered",
+                description: "Leo memiliki pola Rosette yang sangat kontras dan tegas khas biakan Jungle Jive. Sangat aktif, penyayang, dan siap diadopsi."
+            },
+            {
+                id: 2,
+                name: "Luna",
+                pattern: "Bengal Marble",
+                price: "Rp 5.000.000",
+                status: "tersedia",
+                image: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=800&q=80",
+                age: "2,5 Bulan",
+                gender: "Betina (Female)",
+                vaccine: "Vaksin Ready",
+                pedigree: "CFA Certificate",
+                description: "Luna mempunyai motif alur Marble yang anggun dengan bulu yang sangat halus. Memiliki sifat yang tenang, manja, dan penyayang."
+            },
+            {
+                id: 3,
+                name: "Simba",
+                pattern: "Snow Bengal",
+                price: "Rp 8.000.000",
+                status: "teradopsi",
+                image: "https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&w=800&q=80",
+                age: "4 Bulan",
+                gender: "Jantan (Male)",
+                vaccine: "Vaksin Lengkap",
+                pedigree: "CFA Registered",
+                description: "Simba adalah varian Snow Bengal yang anggun dengan mata biru jernih. Kucing ini telah berhasil diadopsi."
+            },
+            {
+                id: 4,
+                name: "Milo",
+                pattern: "Bengal Charcoal Rosette",
+                price: "Rp 7.200.000",
+                status: "tersedia",
+                image: "https://images.unsplash.com/photo-1533738363-b7f9aef128ce?auto=format&fit=crop&w=800&q=80",
+                age: "3 Bulan",
+                gender: "Jantan (Male)",
+                vaccine: "Vaksin Tricat",
+                pedigree: "CFA Pedigree",
+                description: "Milo memiliki corak Charcoal eksotis dengan warna gelap menawan. Karakter sangat lincah, pintar, dan responsif."
+            },
+            {
+                id: 5,
+                name: "Bella",
+                pattern: "Silver Bengal Rosette",
+                price: "Rp 8.500.000",
+                status: "tersedia",
+                image: "https://images.unsplash.com/photo-1561948955-570b270e7c36?auto=format&fit=crop&w=800&q=80",
+                age: "3 Bulan",
+                gender: "Betina (Female)",
+                vaccine: "Vaksin Lengkap",
+                pedigree: "CFA Certified",
+                description: "Bella adalah Silver Bengal dengan kontras warna perak putih memukau. Motif rosette bulat sempurna dan proporsional."
+            },
+            {
+                id: 6,
+                name: "Nala",
+                pattern: "Bengal Spotted Brown",
+                price: "Rp 5.800.000",
+                status: "teradopsi",
+                image: "https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=800&q=80",
+                age: "5 Bulan",
+                gender: "Betina (Female)",
+                vaccine: "Vaksin Lengkap",
+                pedigree: "CFA Pedigree",
+                description: "Nala telah diadopsi oleh adopter pecinta Bengal. Memiliki sifat aktif dan sangat manja terhadap pemiliknya."
+            }
+        ];
+
+        let currentFilter = 'all';
+        const WA_PHONE_NUMBER = "6283879571686";
+
+        // Render Cats Function
+        function renderCats(filter = 'all') {
+            const grid = document.getElementById('cat-grid');
+            const emptyState = document.getElementById('empty-state');
+            grid.innerHTML = '';
+
+            const filteredData = catData.filter(cat => {
+                if (filter === 'all') return true;
+                return cat.status === filter;
+            });
+
+            if (filteredData.length === 0) {
+                emptyState.classList.remove('hidden');
+            } else {
+                emptyState.classList.add('hidden');
+            }
+
+            filteredData.forEach(cat => {
+                const isAvailable = cat.status === 'tersedia';
+                const badgeColor = isAvailable ? 'bg-emerald-500' : 'bg-red-500';
+                const badgeText = isAvailable ? 'Tersedia' : 'Teradopsi';
+
+                const cardHtml = `
+                    <div class="cat-card bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm flex flex-col justify-between">
+                        <div>
+                            <div class="relative h-64 overflow-hidden bg-gray-100">
+                                <img src="${cat.image}" 
+                                     alt="${cat.name}" 
+                                     class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                                     onerror="this.src='https://placehold.co/800x600/f8f6f3/c85e00?text=Jungle+Jive+Cattery'">
+                                
+                                <span class="absolute top-3.5 right-3.5 ${badgeColor} text-white text-xs font-semibold px-3 py-1 rounded-full shadow-md tracking-wide">
+                                    ${badgeText}
+                                </span>
+                            </div>
+
+                            <div class="p-5">
+                                <h3 class="text-lg font-bold text-gray-900 leading-tight">
+                                    ${cat.name} <span class="font-normal text-gray-600">(${cat.pattern})</span>
+                                </h3>
+                                <p class="text-cattery font-bold text-lg mt-1">${cat.price}</p>
+                            </div>
+                        </div>
+
+                        <div class="p-5 pt-0 grid grid-cols-2 gap-3">
+                            <button onclick="openModal(${cat.id})" class="w-full bg-amber-50 hover:bg-amber-100 text-cattery font-semibold py-2.5 rounded-xl transition text-xs sm:text-sm">
+                                Detail
+                            </button>
+                            <button onclick="bookCat('${cat.name}', ${isAvailable})" class="w-full ${isAvailable ? 'bg-cattery hover:bg-cattery-dark text-white' : 'bg-gray-200 text-gray-500 cursor-not-allowed'} font-semibold py-2.5 rounded-xl transition text-xs sm:text-sm">
+                                ${isAvailable ? 'Booking' : 'Teradopsi'}
+                            </button>
+                        </div>
+                    </div>
+                `;
+                grid.innerHTML += cardHtml;
+            });
+        }
+
+        function filterCats(category) {
+            currentFilter = category;
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById(`btn-${category}`).classList.add('active');
+            renderCats(category);
+        }
+
+        function openModal(id) {
+            const cat = catData.find(c => c.id === id);
+            if (!cat) return;
+
+            document.getElementById('modal-img').src = cat.image;
+            document.getElementById('modal-name').innerText = cat.name;
+            document.getElementById('modal-pattern').innerText = cat.pattern;
+            document.getElementById('modal-price').innerText = cat.price;
+            document.getElementById('modal-desc').innerText = cat.description;
+            document.getElementById('modal-age').innerText = cat.age;
+            document.getElementById('modal-gender').innerText = cat.gender;
+            document.getElementById('modal-vaccine').innerText = cat.vaccine;
+            document.getElementById('modal-pedigree').innerText = cat.pedigree;
+
+            const badge = document.getElementById('modal-badge');
+            const actionBtn = document.getElementById('modal-action-btn');
+
+            if (cat.status === 'tersedia') {
+                badge.className = 'absolute top-4 left-4 px-3.5 py-1 rounded-full text-xs font-semibold text-white shadow-md bg-emerald-500';
+                badge.innerText = 'Tersedia';
+                actionBtn.disabled = false;
+                actionBtn.className = 'w-2/3 bg-cattery hover:bg-cattery-dark text-white font-semibold py-3 rounded-xl shadow-md transition flex items-center justify-center gap-2';
+                actionBtn.onclick = () => bookCat(cat.name, true);
+            } else {
+                badge.className = 'absolute top-4 left-4 px-3.5 py-1 rounded-full text-xs font-semibold text-white shadow-md bg-red-500';
+                badge.innerText = 'Teradopsi';
+                actionBtn.disabled = true;
+                actionBtn.className = 'w-2/3 bg-gray-300 text-gray-500 font-semibold py-3 rounded-xl cursor-not-allowed flex items-center justify-center gap-2';
+                actionBtn.onclick = null;
+            }
+
+            const modal = document.getElementById('detail-modal');
+            const box = document.getElementById('modal-box');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                box.classList.remove('scale-95', 'opacity-0');
+                box.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('detail-modal');
+            const box = document.getElementById('modal-box');
+            box.classList.remove('scale-100', 'opacity-100');
+            box.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => modal.classList.add('hidden'), 200);
+        }
+
+        function openLoginModal() {
+            const modal = document.getElementById('login-modal');
+            const box = document.getElementById('login-box');
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                box.classList.remove('scale-95', 'opacity-0');
+                box.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function closeLoginModal() {
+            const modal = document.getElementById('login-modal');
+            const box = document.getElementById('login-box');
+            box.classList.remove('scale-100', 'opacity-100');
+            box.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => modal.classList.add('hidden'), 200);
+        }
+
+        function handleLogin(e) {
+            e.preventDefault();
+            closeLoginModal();
+            showToast('Berhasil login ke akun kamu!');
+        }
+
+        function bookCat(name, isAvailable) {
+            if (!isAvailable) {
+                showToast('Maaf, kucing ini sudah teradopsi!', true);
+                return;
+            }
+            const message = encodeURIComponent(`Halo Jungle Jive Cattery, saya berminat untuk booking kucing Bengal bernomer/nama "${name}". Apakah masih tersedia?`);
+            window.open(`https://wa.me/${WA_PHONE_NUMBER}?text=${message}`, '_blank');
+        }
+
+        function showToast(msg, isError = false) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            const toastIcon = document.getElementById('toast-icon');
+
+            toastMsg.innerText = msg;
+            if (isError) {
+                toastIcon.className = 'fa-solid fa-circle-xmark text-red-400 text-xl';
+            } else {
+                toastIcon.className = 'fa-solid fa-circle-check text-emerald-400 text-xl';
+            }
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            setTimeout(() => {
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+
+        // Init App
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCats();
+        });
+    </script>
+</body>
+</html>
