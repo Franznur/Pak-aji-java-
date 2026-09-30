@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart'; // 1. Import package GetX
-import 'routes.dart'; // 2. Import file routes kamu!
+import 'package:get/get.dart';
+import 'pages/registration_page.dart';
+import 'pages/confirm_registration_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,11 +12,19 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp( // 3. Ganti MaterialApp jadi GetMaterialApp
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      title: "Belajar Flutter PPLG 3",
-      initialRoute: Routes.registration,
-      getPages: Routes.pages, // 4. Perhatikan huruf P kapital (getPages)
+      initialRoute: '/register',
+      getPages: [
+        GetPage(
+          name: '/register',
+          page: () => const RegistrationPage(),
+        ),
+        GetPage(
+          name: '/confirm', // <-- PASTIKAN ROUTE INI SUDAH DIDAFTARKAN!
+          page: () => const ConfirmRegistrationPage(),
+        ),
+      ],
     );
   }
 }

@@ -1,32 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../routes.dart';
 
 class RegistrationController extends GetxController {
+  // Controller untuk TextField yang udah kamu punya
   final txtNama = TextEditingController();
   final txtAlamat = TextEditingController();
   final txtNoHp = TextEditingController();
   final txtEmail = TextEditingController();
 
-  void sendData() {
-    Get.toNamed(
-      Routes.confirmRegistration,
-      arguments: {
-        'name': txtNama.text,
-        'alamat': txtAlamat.text,
-        'jenis_kelamin': "Laki-Laki", // Bisa kamu sesuaikan nanti
-        'no_hp': txtNoHp.text,
-        'email': txtEmail.text,
-      },
-    );
-  }
+  // TAMBAHKAN VARIABEL INI BIAR NGGAK MERAH LAGI!
+  var selectedGender = ''.obs;
 
-  @override
-  void onClose() {
-    txtNama.dispose();
-    txtAlamat.dispose();
-    txtNoHp.dispose();
-    txtEmail.dispose();
-    super.onClose();
+  void sendData() {
+    // Jalankan logika kirim data/pindah halaman kamu di sini
+    Get.toNamed('/confirm', arguments: {
+      'nama': txtNama.text,
+      'alamat': txtAlamat.text,
+      'gender': selectedGender.value,
+      'noHp': txtNoHp.text,
+      'email': txtEmail.text,
+    });
   }
 }

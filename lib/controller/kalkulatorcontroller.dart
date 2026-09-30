@@ -1,4 +1,4 @@
-import 'package:get/get.dart'; // <-- KAMU LUPA IMPORT INI!
+import 'package:get/get.dart';
 
 class KalkulatorController extends GetxController {
   var hasilHitung = 0.0.obs;
@@ -18,7 +18,7 @@ class KalkulatorController extends GetxController {
     double hasilKurang = angka1 - angka2;
     hasilHitung.value = hasilKurang;
     Get.snackbar(
-      "hasil pengurangan",
+      "hasil kurang",
       hasilKurang.toString(),
       snackPosition: SnackPosition.BOTTOM,
     );
@@ -28,28 +28,27 @@ class KalkulatorController extends GetxController {
     double hasilKali = angka1 * angka2;
     hasilHitung.value = hasilKali;
     Get.snackbar(
-      "hasil perkalian",
+      "hasil kali",
       hasilKali.toString(),
       snackPosition: SnackPosition.BOTTOM,
     );
   }
 
   void bagi(double angka1, double angka2) {
-    // Penanganan pembagian dengan nol supaya tidak error Infinity
-    if (angka2 == 0) {
-      Get.snackbar(
-        "Error",
-        "Tidak dapat membagi dengan angka nol!",
-        snackPosition: SnackPosition.BOTTOM,
-      );
-      return;
-    }
     double hasilBagi = angka1 / angka2;
-    hasilHitung.value = hasilBagi;
-    Get.snackbar(
-      "hasil pembagian",
-      hasilBagi.toString(),
-      snackPosition: SnackPosition.BOTTOM,
-    );
+    hasilHitung.value = 0;
+      if (angka2 == 0) {
+        Get.snackbar(
+          "Error BOSS",
+          "GAA ISO BAGI NGANGGO ANGKA NOL",
+          snackPosition: SnackPosition.BOTTOM,
+        );
+      } else {
+        Get.snackbar(
+          "hasil bagi",
+          hasilBagi.toString(),
+          snackPosition: SnackPosition.BOTTOM,
+        );
+      } 
   }
 }
