@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import '../components/my_textfield.dart';
 import '../controller/registration_controller.dart';
 
-
+//tes
 class RegistrationPage extends StatelessWidget {
   const RegistrationPage({super.key});
 

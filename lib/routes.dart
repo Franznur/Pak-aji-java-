@@ -1,19 +1,21 @@
 import 'package:get/get.dart';
 import 'pages/registration_page.dart';
 import 'pages/confirm_registration_page.dart';
+import 'pages/list_produk_pages.dart'; 
+import 'pages/detail_produk_page.dart'; // <-- Tambahkan import ini!
 
 class Routes {
-  static const registration = '/registration';
-  static const confirmRegistration = '/confirm-registration';
+  // list pages yang ada di aplikasi
+  static const String registration = "/registration";
+  static const String confirmRegistration = "/confirmRegistration";
+  static const String listProduk = "/listProduk";
+  static const String detailProduk = "/detailProduk"; // <-- Tambahkan nama rute ini!
 
-  static final pages = [
-    GetPage(
-      name: registration,
-      page: () => const RegistrationPage(), // sesuaikan dengan class page kamu
-    ),
-    GetPage(
-      name: confirmRegistration,
-      page: () => const ConfirmRegistrationPage(), // sesuaikan dengan class page kamu
-    ),
+  // kita tampung kedalam array yang akan kita pasang ke main.dart
+  static final myPages = [
+    GetPage(name: registration, page: () => RegistrationPage()),
+    GetPage(name: confirmRegistration, page: () => ConfirmRegistrationPage()),
+    GetPage(name: listProduk, page: () => ListProdukPage()),
+    GetPage(name: detailProduk, page: () => const DetailProdukPage()), // <-- Tambahkan GetPage ini!
   ];
 }

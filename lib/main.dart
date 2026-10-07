@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'pages/registration_page.dart';
-import 'pages/confirm_registration_page.dart';
+import 'routes.dart'; // Pastikan import file routes kamu!
 
 void main() {
   runApp(const MyApp());
@@ -14,17 +13,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: '/register',
-      getPages: [
-        GetPage(
-          name: '/register',
-          page: () => const RegistrationPage(),
-        ),
-        GetPage(
-          name: '/confirm', // <-- PASTIKAN ROUTE INI SUDAH DIDAFTARKAN!
-          page: () => const ConfirmRegistrationPage(),
-        ),
-      ],
+      title: 'Aplikasi Toko',
+      // GANTI BAGIAN INI MENJADI KATALOG PRODUK!
+      initialRoute: Routes.listProduk, 
+      getPages: Routes.myPages,
     );
   }
 }
