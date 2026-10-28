@@ -51,24 +51,28 @@ class HomePage extends StatelessWidget {
                       },
 
                     child: ListTile(
-                      leading: Icon(
-                        Icons.shopping_bag,
-                        color: const Color.fromARGB(255, 15, 233, 7),
+            leading: Icon(
+              Icons.shopping_bag,
+              color: const Color.fromARGB(255, 15, 233, 7),
+              size: 32, // Perbesar dikit biar seimbang
                       ),
                       title: Text(
-                        produk.namaProduk,
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                        ),
+              produk.namaProduk,
+              maxLines: 1,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 14,
+              ),
                       ),
                       subtitle: Text(
-                        produk.harga,
-                        style: TextStyle(
-                          color: const Color.fromARGB(255, 1, 245, 29),
-                        ),
+              produk.harga,
+              style: const TextStyle(
+                color: Color.fromARGB(255, 1, 245, 29),
+                fontWeight: FontWeight.bold,                        ),
                       ),
-                      trailing: Icon(
-                        Icons.arrow_forward,
+                      trailing: const Icon(
+              Icons.arrow_forward_ios, // Ganti panah biar lebih modern
+              size: 16,
                       ),
                     ),
                   ),

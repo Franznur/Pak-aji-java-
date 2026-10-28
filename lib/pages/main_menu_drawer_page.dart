@@ -13,12 +13,12 @@ class MainMenuDrawer extends StatelessWidget {
       () => Scaffold(
         appBar: AppBar(
           title: Text(
-            "Main Menu Drawer",
+            "TOKOPEDIUM BETA 1.0",
             style: TextStyle(
               fontWeight: FontWeight.bold,
             ),
           ),
-          backgroundColor: const Color.fromARGB(255,20,234,170,)),
+          backgroundColor: const Color.fromARGB(255, 161, 255, 130)),
 
           endDrawer: NavigationDrawer(
             selectedIndex: menuDrawerController.selectedIndex.value,
