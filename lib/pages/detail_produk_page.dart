@@ -1,161 +1,168 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../models/produk_model.dart'; // Sesuaikan lokasi import model-mu!
+import 'package:pakaji_project/controller/detail_produk_controller.dart';
 
 class DetailProdukPage extends StatelessWidget {
-  const DetailProdukPage({super.key});
+  DetailProdukPage({super.key});
+
+  // Inisialisasi controller sesuai kode pertama kamu
+  final controller = Get.put(DetailProdukController());
 
   @override
   Widget build(BuildContext context) {
-    // Menerima data produk dari halaman sebelumnya
-    final ProdukModel produk = Get.arguments;
-
     return Scaffold(
-      backgroundColor: Colors.grey[100],
-      // Tombol melayang di bagian bawah halaman
+      appBar: AppBar(
+        title: const Text("Detail Produk"),
+        centerTitle: true,
+        backgroundColor: const Color.fromARGB(255, 78, 185, 20),
+        foregroundColor: Colors.white,
+      ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+            
+              Image.network(   //nggo gambar
+                  controller.imageUrl,
+                  height: 200,
+                width: double.infinity,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) {
+                  return Container(
+                    width: double.infinity,
+                    height: 200,
+                    color: Colors.grey[200],
+                    child: const Center(
+                      child: Text("Gambar tidak bisa dimuat"),
+                    ),
+                  );
+                },
+              ),
+
+              const SizedBox(height: 16),
+
+              //jeneng produk e                    
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: Text(
+                      controller.namaProduk,
+                      style: const TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      const Icon(Icons.star, color: Colors.amber, size: 20),
+                      const SizedBox(width: 4),
+                      Text(
+                        controller.rating,
+                        style: const TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              const SizedBox(height: 8),
+
+              // Nama Toko
+              Row(
+                children: [
+                  const Icon(Icons.store, size: 18, color: Colors.grey),
+                  const SizedBox(width: 6),
+                  Text(
+                    controller.namaToko,
+                    style: const TextStyle(fontSize: 14, color: Colors.grey),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 12),
+
+              // Harga Produk
+              Text(
+                controller.harga,
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.blueAccent,
+                ),
+              ),
+              const Divider(height: 24, thickness: 1),
+
+              // Deskripsi Produk
+              const Text(
+                "Deskripsi Produk",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 6),
+              Text(
+                controller.description,
+                style: const TextStyle(fontSize: 14, height: 1.4),
+              ),
+              const SizedBox(height: 16),
+
+                                                                  //    < Ulasan wong tuku
+              const Text(
+                "Ulasan Pembeli",
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+              const SizedBox(height: 6),
+              Container(
+                width: double.infinity,
+                padding: const EdgeInsets.all(12),
+                decoration: BoxDecoration(
+                  color: Colors.grey[100],
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                child: Text(
+                  "\"${controller.review}\"",
+                  style: const TextStyle(
+                    fontStyle: FontStyle.italic,
+                    color: Colors.black87,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
       bottomNavigationBar: Container(
         padding: const EdgeInsets.all(16),
         color: Colors.white,
         child: ElevatedButton(
           onPressed: () {
             Get.snackbar(
-              "Alhamdulillah", 
-              "Kamu milih ${produk.namaProduk}, dana masuk bosskuuhh",
+              "Informasi",
+              "Anda memilih produk ${controller.namaProduk}",
               snackPosition: SnackPosition.BOTTOM,
-              backgroundColor: Colors.green,
+              backgroundColor: Colors.green, 
               colorText: Colors.white,
             );
           },
           style: ElevatedButton.styleFrom(
-            padding: const EdgeInsets.symmetric(vertical: 16),
+            padding: const EdgeInsets.symmetric(vertical: 14),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(12),
+              borderRadius: BorderRadius.circular(8),
             ),
-            backgroundColor: Colors.blueAccent,
+            backgroundColor: Colors.green, //
           ),
           child: const Text(
-            "Beli maszzeehh", 
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.white),
+            "Beli Sekarang",
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
           ),
         ),
-      ),
-      // CustomScrollView untuk efek header gambar yang bisa di-scroll
-      body: CustomScrollView(
-        slivers: [
-          SliverAppBar(
-            expandedHeight: 300,
-            pinned: true,
-            backgroundColor: Colors.white,
-            foregroundColor: Colors.black, // Warna tombol back
-            flexibleSpace: FlexibleSpaceBar(
-              background: Image.network(
-                produk.imageUrl,
-                fit: BoxFit.cover,
-                // Kalau link gambarmu mati/error, akan muncul icon ini
-                errorBuilder: (context, error, stackTrace) => Container(
-                  color: Colors.grey[300],
-                  child: const Icon(Icons.image_not_supported, size: 100, color: Colors.grey),
-                ),
-              ),
-            ),
-          ),
-          SliverToBoxAdapter(
-            child: Container(
-              padding: const EdgeInsets.all(20),
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-              ),
-              // Menarik container sedikit ke atas agar menumpuk di atas gambar
-              transform: Matrix4.translationValues(0.0, -20.0, 0.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          produk.namaProduk,
-                          style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-                        decoration: BoxDecoration(
-                          color: Colors.orange[50],
-                          borderRadius: BorderRadius.circular(20),
-                        ),
-                        child: Row(
-                          children: [
-                            const Icon(Icons.star, color: Colors.orange, size: 18),
-                            const SizedBox(width: 4),
-                            Text(
-                              produk.rating, 
-                              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: Colors.orange),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
-                  Text(
-                    "Rp ${produk.harga}",
-                    style: const TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.blueAccent),
-                  ),
-                  const SizedBox(height: 16),
-                  Row(
-                    children: [
-                      const Icon(Icons.storefront, color: Colors.grey, size: 20),
-                      const SizedBox(width: 8),
-                      Text(produk.namaToko, style: const TextStyle(fontSize: 15, color: Colors.grey)),
-                    ],
-                  ),
-                  const Divider(height: 40, thickness: 1),
-                  const Text(
-                    "Deskripsi Produk", 
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 10),
-                  Text(
-                    produk.description, 
-                    style: const TextStyle(fontSize: 15, height: 1.5, color: Colors.black87),
-                  ),
-                  const SizedBox(height: 25),
-                  const Text(
-                    "Ulasan Pembeli", 
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 10),
-                  Container(
-                    width: double.infinity,
-                    padding: const EdgeInsets.all(16),
-                    decoration: BoxDecoration(
-                      color: Colors.grey[50],
-                      border: Border.all(color: Colors.grey[200]!),
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        const Icon(Icons.format_quote, color: Colors.grey, size: 24),
-                        const SizedBox(width: 10),
-                        Expanded(
-                          child: Text(
-                            produk.review,
-                            style: const TextStyle(fontStyle: FontStyle.italic, color: Colors.black54, fontSize: 14),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 20), // Memberi jarak kosong di bawah
-                ],
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }

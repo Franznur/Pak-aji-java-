@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Aplikasi Toko',
       // GANTI BAGIAN INI MENJADI KATALOG PRODUK!
-      initialRoute: Routes.listProduk, 
+      initialRoute: Routes.mainMenuPage, // <-- Ganti ini dengan rute yang sesuai
       getPages: Routes.myPages,
     );
   }
