@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:pakaji_project/pages/main_menu_drawer_page.dart';
 import 'pages/registration_page.dart';
 import 'pages/confirm_registration_page.dart';
 import 'pages/main_menu_page.dart';
@@ -15,6 +16,7 @@ class Routes {
   static const String mainMenuPage = "/mainMenu"; 
   static const String historyPage = "/history";
   static const String profilePage = "/profile";
+  static const String mainmenuDrawerPage = "/drawer"; // Tambahkan rute untuk halaman Drawer
 
   static final myPages = [
     GetPage(name: registration, page: () => RegistrationPage()),
@@ -22,6 +24,7 @@ class Routes {
     GetPage(name: mainMenuPage, page: () => MainMenuPage()),
     GetPage(name: historyPage, page: () => HistoryPage()),
     GetPage(name: profilePage, page: () => ProfilePage()),
+    GetPage(name: mainmenuDrawerPage, page: () => MainMenuDrawer()),
 
     GetPage(name: listProduk, page: () => HomePage()),
     GetPage(name: detailProduk, page: () => DetailProdukPage()),

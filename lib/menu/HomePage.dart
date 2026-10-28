@@ -21,41 +21,6 @@ class HomePage extends StatelessWidget {
         backgroundColor: const Color.fromARGB(255, 0, 255, 55),
         foregroundColor: Colors.white,
       ),
-
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: const Color.fromARGB(255, 0, 255, 55),
-              ),
-              child: Text(
-                'Menu',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                ),
-              ),
-            ),
-            ListTile(
-              leading: Icon(Icons.person),
-              title: Text('Profile'),
-              onTap: () {
-                Get.toNamed(Routes.profilePage);
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.history),
-              title: Text('History'),
-              onTap: () {
-                Get.toNamed(Routes.historyPage);
-              },
-            ),
-          ],
-        ),
-      ),
-
       body: Container(
         margin: EdgeInsets.all(10),
         height: 200,
@@ -88,7 +53,7 @@ class HomePage extends StatelessWidget {
                     child: ListTile(
                       leading: Icon(
                         Icons.shopping_bag,
-                        color: Colors.blue,
+                        color: const Color.fromARGB(255, 15, 233, 7),
                       ),
                       title: Text(
                         produk.namaProduk,
@@ -99,7 +64,7 @@ class HomePage extends StatelessWidget {
                       subtitle: Text(
                         produk.harga,
                         style: TextStyle(
-                          color: Colors.blue,
+                          color: const Color.fromARGB(255, 1, 245, 29),
                         ),
                       ),
                       trailing: Icon(

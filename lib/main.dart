@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Aplikasi Toko',
 
-      initialRoute: Routes.mainMenuPage, 
+      initialRoute: Routes.mainmenuDrawerPage, 
       getPages: Routes.myPages,
     );
   }
