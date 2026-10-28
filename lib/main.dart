@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'routes.dart'; // Pastikan import file routes kamu!
+import 'routes.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,8 +14,8 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Aplikasi Toko',
-      // GANTI BAGIAN INI MENJADI KATALOG PRODUK!
-      initialRoute: Routes.mainMenuPage, // <-- Ganti ini dengan rute yang sesuai
+
+      initialRoute: Routes.mainMenuPage, 
       getPages: Routes.myPages,
     );
   }

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../menu/HomePage.dart';
-import '../menu/HistoryPage.dart'; // Perhatikan ada typo 'HisotryPage' pada nama file Anda
+import '../menu/HistoryPage.dart'; 
 import '../menu/ProfilePage.dart';
 
 
