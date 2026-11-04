@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+
+import 'package:pakaji_project/routes.dart';
 class LoginCloneController extends GetxController {
 
     TextEditingController txtUsername = TextEditingController();
@@ -34,7 +36,7 @@ class LoginCloneController extends GetxController {
              final data = jsonDecode(response.body);
              if(data['status'] == true){
                 Get.snackbar('Success', data['message']);
-                Get.offNamed('/drawer');
+                Get.offNamed(Routes.mainmenuDrawerPage);
              }else{
                 Get.snackbar('gagal', data['message']);
              }

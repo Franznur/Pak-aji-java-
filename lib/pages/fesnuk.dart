@@ -27,7 +27,7 @@ class Fesnuk extends StatelessWidget {
 
             // Textfield Username
             MyTextfield(
-              myHint: "Milih Nomormu tah emailmu?",
+              myHint: "Masukkan Useraname anda",
               txtController: controller.txtUsername,
               radius: 8,
             ),
@@ -35,7 +35,7 @@ class Fesnuk extends StatelessWidget {
 
             // Textfield Password
             MyTextfield(
-              myHint: "Kata sandine mas",
+              myHint: "Kata sandi anda",
               txtController: controller.txtPassword,
               radius: 8,
               isObscure: true,
@@ -47,7 +47,7 @@ class Fesnuk extends StatelessWidget {
             TextButton(
               onPressed: () {},
               child: const Text(
-                "Jenengan Lupa kata sandine?",
+                "Lupa kata sandi?",
                 style: TextStyle(color: Color(0xFF1877F2)),
               ),
             ),
