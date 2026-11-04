@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:pakaji_project/pages/fesnuk.dart';
 import 'package:pakaji_project/pages/main_menu_drawer_page.dart';
 import 'pages/registration_page.dart';
 import 'pages/confirm_registration_page.dart';
@@ -17,6 +18,7 @@ class Routes {
   static const String historyPage = "/history";
   static const String profilePage = "/profile";
   static const String mainmenuDrawerPage = "/drawer"; // Tambahkan rute untuk halaman Drawer
+  static const String fesnukPage = "/fesnuk"; // Tambahkan rute untuk halaman Fesnuk
 
   static final myPages = [
     GetPage(name: registration, page: () => RegistrationPage()),
@@ -25,6 +27,7 @@ class Routes {
     GetPage(name: historyPage, page: () => HistoryPage()),
     GetPage(name: profilePage, page: () => ProfilePage()),
     GetPage(name: mainmenuDrawerPage, page: () => MainMenuDrawer()),
+    GetPage(name: fesnukPage, page: () => Fesnuk()), // Tambahkan halaman Fesnuk
 
     GetPage(name: listProduk, page: () => HomePage()),
     GetPage(name: detailProduk, page: () => DetailProdukPage()),

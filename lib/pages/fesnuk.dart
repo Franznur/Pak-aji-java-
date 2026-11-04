@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:pakaji_project/controller/login_clone_controller.dart';
 import '../components/textfieldfesnuk.dart';
 
 class Fesnuk extends StatelessWidget {
   Fesnuk({super.key});
 
-  final TextEditingController txtUsername = TextEditingController();
-  final TextEditingController txtPassword = TextEditingController();
+  final controller = Get.put(LoginCloneController());
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +28,7 @@ class Fesnuk extends StatelessWidget {
             // Textfield Username
             MyTextfield(
               myHint: "Milih Nomormu tah emailmu?",
-              txtController: txtUsername,
+              txtController: controller.txtUsername,
               radius: 8,
             ),
             const SizedBox(height: 12),
@@ -35,35 +36,12 @@ class Fesnuk extends StatelessWidget {
             // Textfield Password
             MyTextfield(
               myHint: "Kata sandine mas",
-              txtController: txtPassword,
+              txtController: controller.txtPassword,
               radius: 8,
               isObscure: true,
             ),
             const SizedBox(height: 16),
 
-            // Tombol Login
-            SizedBox(
-              width: double.infinity,
-              height: 48,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFF1877F2),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
-                onPressed: () {},
-                child: const Text(
-                  "Log Masuk",
-                  style: TextStyle(
-                    fontSize: 16,
-                    color: Colors.white,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
-            ),
-            const SizedBox(height: 16),
 
             // Lupa Password
             TextButton(
@@ -75,27 +53,24 @@ class Fesnuk extends StatelessWidget {
             ),
             const SizedBox(height: 20),
 
-            // Tombol Buat Akun Baru
-            SizedBox(
-              width: double.infinity,
-              height: 44,
-              child: OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                  side: const BorderSide(color: Color(0xFF1877F2)),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                ),
-                onPressed: () {},
-                child: const Text(
-                  "Buat akun baru",
-                  style: TextStyle(
-                    color: Color(0xFF1877F2),
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
+
+           Obx(
+            ()=> controller.isLoading.value
+            ? Center(child: CircularProgressIndicator(),)
+            : Container(
+            margin: const EdgeInsets.symmetric(horizontal: 30),
+            width: double.infinity,
+            height: 50,
+            child: OutlinedButton(
+              onPressed: () {
+                controller.login();
+              },
+              child: const Text("Login"),
             ),
+          ),
+          ),
+            
+            // Tombol Buat Akun Baru
           ],
         ),
       ),
