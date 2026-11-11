@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:pakaji_project/pages/fesnuk.dart';
 import 'package:pakaji_project/pages/main_menu_drawer_page.dart';
+import 'package:pakaji_project/pages/valopage.dart';
 import 'pages/registration_page.dart';
 import 'pages/confirm_registration_page.dart';
 import 'pages/main_menu_page.dart';
@@ -28,8 +29,9 @@ class Routes {
     GetPage(name: historyPage, page: () => HistoryPage()),
     GetPage(name: profilePage, page: () => ProfilePage()),
     GetPage(name: mainmenuDrawerPage, page: () => MainMenuDrawer()),
-    GetPage(name: fesnukPage, page: () => Fesnuk()), // Tambahkan halaman Fesnuk
+   // GetPage(name: fesnukPage, page: () => Fesnuk()), // Tambahkan halaman Fesnuk
     GetPage(name: detailProduk, page: () => DetailProdukPage()),
-    GetPage(name: valoPage, page: () => HomePage()), // Tambahkan halaman Valo
+    GetPage(name: valoPage, page: () => HomePageValo()), // Tambahkan halaman Valo
+
   ];
 }
