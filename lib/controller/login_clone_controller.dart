@@ -1,66 +1,53 @@
-import 'package:get/get.dart';
+import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import 'package:pakaji_project/models/login_model.dart';
 
+class LoginController extends GetxController {
 
-class LoginCloneController extends GetxController {
+  TextEditingController txtUsername = TextEditingController();
+  TextEditingController txtPassword = TextEditingController();
 
-    TextEditingController txtUsername = TextEditingController();
-    TextEditingController txtPassword = TextEditingController();
+  var isLoading = false.obs;
+  var loginModel = Rxn<LoginModel>();
 
-    var isLoading = false.obs;
+  //method hit API
+  Future<void> login() async{
+    if(txtUsername.text.toString().isEmpty || txtPassword.text.toString().isEmpty){
+      Get.snackbar("error", "username password nya harus diisi nk ora bool em bledos");
+    }else{
 
-    var loginModel = Rxn<LoginModel>();
+      try{
 
-    //tambah API
-    void login() async {
-      if(txtUsername.text.toString().isEmpty || txtPassword.text.toString().isEmpty){
-        
-        Get.snackbar('Error', 'Username dan Password tidak boleh kosong');
+        isLoading.value = true; // sebagai tanda di page nya muncul loading widget
+        final url = Uri.parse("https://mediadwi.com/api/latihan/login");
 
-      }else{
+        final response = await http.post(url, body: {
+          "username": txtUsername.text.toString(),
+          "password": txtPassword.text.toString(),
+        });
 
-        try{
-
-            isLoading.value = true;
-            final url = Uri.parse("https://mediadwi.com/api/latihan/login");
-
-            final response = await http.post(url, body: {
-              'username': txtUsername.text.toString(),
-              'password': txtPassword.text.toString(),
-            });
-
-                 isLoading.value = false;
+        isLoading.value = false;
         if(response.statusCode == 200){
-          // kita ambil jsonnya message pindah tampilan ke main menu
-          // contoh json yang paling sederhana, next pertemuan json yang kompleks
-          loginModel.value = loginModelFromJson(response.body);
-          
-          if(loginModel.value?.status == true){
-            Get.snackbar("berhasil", loginModel.value!.massage.toString());
-            // pindah ke main menu
-            // get.off karena login nya di close
-            // carilah satu free api (sport db) yang return nya adalah json array
-            // di push ke git jam 10.30 
-          }else{
-            Get.snackbar("gagal", loginModel.value!.massage.toString());
+          // kita ambil json nya messeage pindah tampilan ke main menu
+          final data = jsonDecode(response.body);
+          if(data['status'] == true){
+            Get.snackbar("berhasil", data['message']);
+            Get.offNamed('routes.mainmenudrawerpage');
+          } else {
+            Get.snackbar("Gagal", data['message']);
           }
 
-        }else{
-          Get.snackbar("gagal", "cek internet connection");
-        }
-             
-            
-              
-        } catch (e) {
-          isLoading.value = false;
-          Get.snackbar('gagal', e.toString());
+        } else {
+          Get.snackbar("Gagal", "internet e cek en sek");
         }
 
+      } catch (e) {
+        Get.snackbar("Error", "Adaa kesalahan: $e");
+      }
+      
+    }
+  }
 
-        
-
-      }
-      }
-      }
+}

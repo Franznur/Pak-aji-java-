@@ -1,13 +1,3 @@
-// To parse this JSON data, do
-//
-//     final loginModel = loginModelFromJson(jsonString);
-
-import 'dart:convert';
-
-LoginModel loginModelFromJson(String str) => LoginModel.fromJson(json.decode(str));
-
-String loginModelToJson(LoginModel data) => json.encode(data.toJson());
-
 class LoginModel {
     final bool status;
     final String massage;
@@ -20,9 +10,10 @@ class LoginModel {
     });
 
     factory LoginModel.fromJson(Map<String, dynamic> json) => LoginModel(
-        status: json["Status"],
-        massage: json["Massage"],
-        token: json["Token"],
+        // Dikasih ?? false biar kalau dari server null, nggak bikin aplikasi crash
+        status: json["Status"] ?? false, 
+        massage: json["Massage"] ?? '',
+        token: json["Token"] ?? '',
     );
 
     Map<String, dynamic> toJson() => {
