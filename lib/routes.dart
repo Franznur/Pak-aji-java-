@@ -8,8 +8,6 @@ import 'menu/homepage.dart';
 import 'pages/detail_produk_page.dart'; 
 import 'menu/historypage.dart';
 import 'menu/profilepage.dart';
-import 'pages/valopage.dart'; // Import halaman Anime
-
 
 class Routes {
   static const String registration = "/registration";
@@ -31,8 +29,7 @@ class Routes {
     GetPage(name: profilePage, page: () => ProfilePage()),
     GetPage(name: mainmenuDrawerPage, page: () => MainMenuDrawer()),
     GetPage(name: fesnukPage, page: () => Fesnuk()), // Tambahkan halaman Fesnuk
-    GetPage(name: valoPage, page: () => valopage()), // Tambahkan halaman Valo
-    GetPage(name: listProduk, page: () => HomePage()),
     GetPage(name: detailProduk, page: () => DetailProdukPage()),
+    GetPage(name: valoPage, page: () => HomePage()), // Tambahkan halaman Valo
   ];
 }

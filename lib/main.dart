@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Aplikasi Toko',
 
-      initialRoute: Routes.fesnukPage, // Set halaman awal ke halaman Anime
+      initialRoute: Routes.valoPage, // Set halaman awal ke halaman Anime
       getPages: Routes.myPages,
     );
   }
