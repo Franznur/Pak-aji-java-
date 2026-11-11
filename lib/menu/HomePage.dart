@@ -31,7 +31,7 @@ class HomePage extends StatelessWidget {
             itemBuilder: (context, index) {
               final produk = controller.listProduk[index];
 
-              return Container(
+              return SizedBox(
                 width: 180,
                 child: Card(
                   child: InkWell(

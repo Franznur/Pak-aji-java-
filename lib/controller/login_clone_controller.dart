@@ -1,15 +1,17 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'dart:convert';
+import 'package:pakaji_project/models/login_model.dart';
 
-import 'package:pakaji_project/routes.dart';
+
 class LoginCloneController extends GetxController {
 
     TextEditingController txtUsername = TextEditingController();
     TextEditingController txtPassword = TextEditingController();
 
     var isLoading = false.obs;
+
+    var loginModel = Rxn<LoginModel>();
 
     //tambah API
     void login() async {
@@ -29,30 +31,36 @@ class LoginCloneController extends GetxController {
               'password': txtPassword.text.toString(),
             });
 
-          isLoading.value = false;
-
-          if(response.statusCode == 200){
-             
-             final data = jsonDecode(response.body);
-             if(data['status'] == true){
-                Get.snackbar('Success', data['message']);
-                Get.offNamed(Routes.mainmenuDrawerPage);
-             }else{
-                Get.snackbar('gagal', data['message']);
-             }
-             
-             
+                 isLoading.value = false;
+        if(response.statusCode == 200){
+          // kita ambil jsonnya message pindah tampilan ke main menu
+          // contoh json yang paling sederhana, next pertemuan json yang kompleks
+          loginModel.value = loginModelFromJson(response.body);
+          
+          if(loginModel.value?.status == true){
+            Get.snackbar("berhasil", loginModel.value!.massage.toString());
+            // pindah ke main menu
+            // get.off karena login nya di close
+            // carilah satu free api (sport db) yang return nya adalah json array
+            // di push ke git jam 10.30 
           }else{
-            Get.snackbar('Error', 'Terjadi kesalahan: koneksi');
+            Get.snackbar("gagal", loginModel.value!.massage.toString());
+          }
+
+        }else{
+          Get.snackbar("gagal", "cek internet connection");
+        }
+             
+            
               
-        }} catch (e) {
+        } catch (e) {
           isLoading.value = false;
           Get.snackbar('gagal', e.toString());
         }
 
 
-        }
+        
 
       }
-    }
-
+      }
+      }
